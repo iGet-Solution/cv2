@@ -29,40 +29,130 @@
             </section>
             
 
-            <section class="projects box fade-in">
-                <h3>🚀 Projets récents</h3>
-                <p class="subtitle">Un aperçu de quelques outils et sites que j'ai développés.</p>
-            
-                <div class="project-card">
-                    <img src="sitetest.png" alt="Aperçu Portfolio" class="project-image">
-                    <div class="project-content">
-                        <h4>Portfolio personnel</h4>
-                        <p>Site responsive développé en HTML/CSS/JS avec animations et thème sombre. Version papier et web du CV.</p>
-                        <div class="tech">
-                            <i class="devicon-html5-plain colored"></i>
-                            <i class="devicon-css3-plain colored"></i>
-                            <i class="devicon-javascript-plain colored"></i>
-                        </div>
-                        <a href="https://iget-solution.github.io/CV/" class="btn" target="_blank">Voir le site</a>
-                    </div>
-                </div>
-            
-                <div class="project-card">
-                    <img src="sitetest.png" alt="Aperçu Application Flask" class="project-image">
-                    <div class="project-content">
-                        <h4>Application RH Flask</h4>
-                        <p>Application interne pour gérer les disponibilités du personnel et les demandes de congés. Gestion des rôles et affectations.</p>
-                        <div class="tech">
-                            <i class="devicon-python-plain colored"></i>
-                            <i class="devicon-flask-original"></i>
-                            <i class="devicon-html5-plain colored"></i>
-                        </div>
-                        <a href="https://github.com/iGet-Solution" class="btn" target="_blank">Voir le code</a>
-                    </div>
-                </div>
-            </section>
+<!-- SECTION PROJETS avec LIGHTBOX + galerie -->
+<section class="projects box fade-in">
+    <h3>🚀 Projets récents</h3>
+    <p class="subtitle">Un aperçu de quelques outils et sites que j'ai développés.</p>
+  
+    <div class="project-card">
+      <div class="project-image-wrapper">
+        <img src="Dispo utilisateur.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['Dispo utilisateur.png', 'admin_interface2.png', 'admin_interface3.png'])">
+      </div>
+      <div class="project-content">
+        <h4>Gestions des disponibilités</h4>
+        <p>Application interne pour gérer les disponibilités du personnel et affectations.</p>
+        <div class="tech">
+          <i class="devicon-python-plain colored"></i>
+          <i class="devicon-flask-original"></i>
+          <i class="devicon-html5-plain colored"></i>
+          <i class="devicon-css3-plain colored"></i>
+          <i class="devicon-javascript-plain colored"></i>
+        </div>
+        <a href="https://github.com/iGet-Solution" class="btn" target="_blank">Voir le code</a>
+      </div>
+    </div>
+  
+    <div class="project-card">
+      <div class="project-image-wrapper">
+        <img src="sitetest.png" alt="Aperçu Portfolio" class="project-image" onclick="openGallery(['sitetest.png', 'sitetest2.png', 'sitetest3.png'])">
+      </div>
+      <div class="project-content">
+        <h4>Portfolio personnel</h4>
+        <p>Site responsive développé en HTML/CSS/JS avec animations et thème sombre. Version papier et web du CV.</p>
+        <div class="tech">
+          <i class="devicon-html5-plain colored"></i>
+          <i class="devicon-css3-plain colored"></i>
+          <i class="devicon-javascript-plain colored"></i>
+        </div>
+        <a href="https://iget-solution.github.io/CV/" class="btn" target="_blank">Voir le site</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Lightbox galerie -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightbox-img" src="" alt="Aperçu agrandi">
+    <div class="lightbox-nav">
+      <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+      <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+  
+  <script>
+  let currentImageIndex = 0;
+  let currentGallery = [];
+  let scrollPosition = 0;
+  
+  function openGallery(images) {
+    currentGallery = images;
+    currentImageIndex = 0;
+    showImage();
+    scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    document.getElementById("lightbox").style.display = "flex";
+    document.body.classList.add("noscroll");
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function showImage() {
+    const img = document.getElementById("lightbox-img");
+    img.style.opacity = 0;
+    setTimeout(() => {
+      img.src = currentGallery[currentImageIndex];
+      img.onload = () => img.style.opacity = 1;
+      document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+    }, 150);
+  }
+  
+  function changeImage(direction) {
+    currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
+    showImage();
+  }
+  
+  function closeLightbox(e) {
+    if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
+      document.getElementById("lightbox").style.display = "none";
+      document.body.classList.remove("noscroll");
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        window.scrollTo({ top: scrollPosition, behavior: 'auto' });
+      }, 0);
+    }
+  }
+  
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      closeLightbox();
+    }
+  });
+  </script>
 
-
+<script>
+    // Gestion du swipe sur mobile
+    let startX = 0;
+    
+    document.getElementById("lightbox").addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    document.getElementById("lightbox").addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+    
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          changeImage(1);  // Swipe vers la gauche
+        } else {
+          changeImage(-1); // Swipe vers la droite
+        }
+      }
+    }, { passive: true });
+    </script>
+    
+  
 
             <section class="experience box fade-in">
                 <h3>Expérience Professionnelle</h3>
@@ -205,6 +295,9 @@
             </div>
         </footer>
     </div>
+
+
+    
 
     <script>
         const text = "Je suis actuellement Responsable Informatique dans une PME industrielle de 50+ personnes. Je gère l’ensemble de l’infrastructure IT : serveurs (Windows Server, Hyper-V), Active Directory, gestion des VM, sécurité réseau, sauvegardes, etc. J’ai également conçu plusieurs outils internes (ticketing, gestion RH, visualisation du personnel) en Python, HTML/CSS et JavaScript. Mon approche est à la fois technique et humaine : j’assure aussi le support utilisateurs, la documentation interne, ainsi que la communication sur LinkedIn ou à travers des supports adaptés. J’aime proposer des solutions concrètes, optimiser les systèmes, et accompagner les collaborateurs dans leur quotidien numérique";
