@@ -614,16 +614,19 @@ a:hover {
 
 .swipe-hint {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 6px;
+    color: #ffffff;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border-radius: 20px;
     z-index: 10000;
+    text-align: center;
+    white-space: nowrap;
     animation: fadeOut 4s forwards;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
 @keyframes fadeOut {
