@@ -589,3 +589,45 @@ a:hover {
     }
   }
   
+
+
+  .lightbox-dots {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    gap: 6px;
+    z-index: 9999;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.lightbox-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.lightbox-dots span.active {
+    background-color: #fff;
+}
+
+.swipe-hint {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    z-index: 10000;
+    animation: fadeOut 4s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}

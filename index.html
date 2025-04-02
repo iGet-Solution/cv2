@@ -69,88 +69,100 @@
     </div>
   </section>
   
-  <!-- Lightbox galerie -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+<!-- Lightbox galerie -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <div class="swipe-hint" id="swipe-hint">Swipe vers le bas pour fermer</div>
     <img id="lightbox-img" src="" alt="Aperçu agrandi">
     <div class="lightbox-nav">
         <span class="prev" onclick="changeImage(-1)">&#10094;</span>
         <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
     <div class="lightbox-counter" id="lightbox-counter"></div>
+    <div class="lightbox-dots" id="lightbox-dots"></div>
 </div>
 
 <script>
-    let currentImageIndex = 0;
-    let currentGallery = [];
-    let scrollPosition = 0;
+let currentImageIndex = 0;
+let currentGallery = [];
+let scrollPosition = 0;
 
-    function openGallery(images) {
-        currentGallery = images;
-        currentImageIndex = 0;
-        showImage();
-        scrollPosition = window.scrollY || document.documentElement.scrollTop;
-        document.getElementById("lightbox").style.display = "flex";
-        document.body.classList.add("noscroll");
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-    }
+function openGallery(images) {
+    currentGallery = images;
+    currentImageIndex = 0;
+    showImage();
+    scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("swipe-hint").style.display = "block";
+    document.body.classList.add("noscroll");
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+}
 
-    function showImage() {
-        const img = document.getElementById("lightbox-img");
-        img.style.opacity = 0;
+function showImage() {
+    const img = document.getElementById("lightbox-img");
+    img.style.opacity = 0;
+    setTimeout(() => {
+        img.src = currentGallery[currentImageIndex];
+        img.onload = () => img.style.opacity = 1;
+        document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+        
+        const dotsContainer = document.getElementById("lightbox-dots");
+        dotsContainer.innerHTML = "";
+        currentGallery.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.className = "dot" + (i === currentImageIndex ? " active" : "");
+            dotsContainer.appendChild(dot);
+        });
+    }, 100);
+}
+
+function changeImage(direction) {
+    currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
+    showImage();
+}
+
+function closeLightbox(e) {
+    if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
+        document.getElementById("lightbox").style.display = "none";
+        document.body.classList.remove("noscroll");
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
         setTimeout(() => {
-            img.src = currentGallery[currentImageIndex];
-            img.onload = () => img.style.opacity = 1;
-            document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
-        }, 100);
+            window.scrollTo({ top: scrollPosition, behavior: 'auto' });
+        }, 0);
     }
+}
 
-    function changeImage(direction) {
-        currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
-        showImage();
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closeLightbox();
     }
+});
 
-    function closeLightbox(e) {
-        if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
-            document.getElementById("lightbox").style.display = "none";
-            document.body.classList.remove("noscroll");
-            document.documentElement.style.overflow = '';
-            document.body.style.overflow = '';
-            setTimeout(() => {
-                window.scrollTo({ top: scrollPosition, behavior: 'auto' });
-            }, 0);
-        }
-    }
+let startY = 0;
+document.getElementById("lightbox").addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+}, { passive: true });
 
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
-            closeLightbox();
-        }
-    });
+document.getElementById("lightbox").addEventListener("touchend", (e) => {
+    const endY = e.changedTouches[0].clientY;
+    const diffY = startY - endY;
 
-    let startY = 0;
-    document.getElementById("lightbox").addEventListener("touchstart", (e) => {
-        startY = e.touches[0].clientY;
-    }, { passive: true });
-
-    document.getElementById("lightbox").addEventListener("touchend", (e) => {
-        const endY = e.changedTouches[0].clientY;
-        const diffY = startY - endY;
-
-        if (Math.abs(diffY) > 50) {
-            if (diffY > 0) {
-                changeImage(1);
+    if (Math.abs(diffY) > 50) {
+        if (diffY > 0) {
+            changeImage(1);
+        } else {
+            if (Math.abs(diffY) > 100) {
+                closeLightbox({ target: document.getElementById("lightbox") });
             } else {
-                if (Math.abs(diffY) > 100) {
-                    closeLightbox({ target: document.getElementById("lightbox") });
-                } else {
-                    changeImage(-1);
-                }
+                changeImage(-1);
             }
         }
-    }, { passive: true });
+    }
+}, { passive: true });
 </script>
+
     
   
 
