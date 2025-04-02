@@ -74,83 +74,83 @@
     <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
     <img id="lightbox-img" src="" alt="Aperçu agrandi">
     <div class="lightbox-nav">
-      <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-      <span class="next" onclick="changeImage(1)">&#10095;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
     <div class="lightbox-counter" id="lightbox-counter"></div>
-  </div>
-  
-  <script>
-  let currentImageIndex = 0;
-  let currentGallery = [];
-  let scrollPosition = 0;
-  
-  function openGallery(images) {
-    currentGallery = images;
-    currentImageIndex = 0;
-    showImage();
-    scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    document.getElementById("lightbox").style.display = "flex";
-    document.body.classList.add("noscroll");
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function showImage() {
-    const img = document.getElementById("lightbox-img");
-    img.style.opacity = 0;
-    setTimeout(() => {
-      img.src = currentGallery[currentImageIndex];
-      img.onload = () => img.style.opacity = 1;
-      document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
-    }, 150);
-  }
-  
-  function changeImage(direction) {
-    currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
-    showImage();
-  }
-  
-  function closeLightbox(e) {
-    if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
-      document.getElementById("lightbox").style.display = "none";
-      document.body.classList.remove("noscroll");
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        window.scrollTo({ top: scrollPosition, behavior: 'auto' });
-      }, 0);
-    }
-  }
-  
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-      closeLightbox();
-    }
-  });
-  </script>
+</div>
 
 <script>
-    // Gestion du swipe sur mobile
-    let startX = 0;
-    
-    document.getElementById("lightbox").addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    
-    document.getElementById("lightbox").addEventListener("touchend", (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-    
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-          changeImage(1);  // Swipe vers la gauche
-        } else {
-          changeImage(-1); // Swipe vers la droite
+    let currentImageIndex = 0;
+    let currentGallery = [];
+    let scrollPosition = 0;
+
+    function openGallery(images) {
+        currentGallery = images;
+        currentImageIndex = 0;
+        showImage();
+        scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        document.getElementById("lightbox").style.display = "flex";
+        document.body.classList.add("noscroll");
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function showImage() {
+        const img = document.getElementById("lightbox-img");
+        img.style.opacity = 0;
+        setTimeout(() => {
+            img.src = currentGallery[currentImageIndex];
+            img.onload = () => img.style.opacity = 1;
+            document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+        }, 100);
+    }
+
+    function changeImage(direction) {
+        currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
+        showImage();
+    }
+
+    function closeLightbox(e) {
+        if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
+            document.getElementById("lightbox").style.display = "none";
+            document.body.classList.remove("noscroll");
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                window.scrollTo({ top: scrollPosition, behavior: 'auto' });
+            }, 0);
         }
-      }
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeLightbox();
+        }
+    });
+
+    let startY = 0;
+    document.getElementById("lightbox").addEventListener("touchstart", (e) => {
+        startY = e.touches[0].clientY;
     }, { passive: true });
-    </script>
+
+    document.getElementById("lightbox").addEventListener("touchend", (e) => {
+        const endY = e.changedTouches[0].clientY;
+        const diffY = startY - endY;
+
+        if (Math.abs(diffY) > 50) {
+            if (diffY > 0) {
+                changeImage(1);
+            } else {
+                if (Math.abs(diffY) > 100) {
+                    closeLightbox({ target: document.getElementById("lightbox") });
+                } else {
+                    changeImage(-1);
+                }
+            }
+        }
+    }, { passive: true });
+</script>
     
   
 

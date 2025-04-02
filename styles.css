@@ -462,13 +462,7 @@ a:hover {
     flex-direction: column;
   }
   
-  .lightbox img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #00fff7;
-    transition: opacity 0.3s ease;
-  }
+  
   
   /* Croix de fermeture */
   .close-lightbox {
@@ -556,3 +550,42 @@ a:hover {
     overflow: hidden;
     height: 100vh;
 }
+
+
+
+@media (max-width: 768px) {
+    .lightbox {
+      background-color: #000; /* noir total façon Insta */
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+  
+    .lightbox img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* comme Instagram */
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+    }
+  
+    .lightbox-nav,
+    .lightbox-counter {
+      display: none;
+    }
+  
+    .close-lightbox {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.8rem;
+      color: #fff;
+      z-index: 10000;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 10px;
+      border-radius: 5px;
+    }
+  }
+  
