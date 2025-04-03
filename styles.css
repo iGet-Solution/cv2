@@ -614,23 +614,25 @@ a:hover {
 
 .swipe-hint {
     position: absolute;
-    top: 20px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-radius: 8px;
     z-index: 10000;
-    animation: fadeOut 4s forwards;
+    text-align: center;
+    animation: fadeOutHint 5s forwards;
 }
 
-@keyframes fadeOut {
+@keyframes fadeOutHint {
     0% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; display: none; }
+    85% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
 }
+
 
 
 
@@ -642,7 +644,10 @@ a:hover {
   
 
   .lightbox img {
-    touch-action: none; /* désactive zoom/pinch sur mobile */
+    touch-action: none; /* empêche pinch to zoom */
     user-select: none;
     -webkit-user-drag: none;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
 }
