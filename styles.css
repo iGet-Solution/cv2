@@ -614,23 +614,35 @@ a:hover {
 
 .swipe-hint {
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    border-radius: 20px;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
     z-index: 10000;
-    text-align: center;
-    white-space: nowrap;
     animation: fadeOut 4s forwards;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
 @keyframes fadeOut {
     0% { opacity: 1; }
     80% { opacity: 1; }
     100% { opacity: 0; display: none; }
+}
+
+
+
+@media (min-width: 769px) {
+    .swipe-hint {
+      display: none !important;
+    }
+  }
+  
+
+  .lightbox img {
+    touch-action: none; /* désactive zoom/pinch sur mobile */
+    user-select: none;
+    -webkit-user-drag: none;
 }
