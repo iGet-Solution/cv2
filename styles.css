@@ -651,3 +651,20 @@ a:hover {
     max-height: 100vh;
     object-fit: contain;
 }
+
+
+
+/* On masque les Dots sur PC */
+@media (min-width: 769px) {
+    .lightbox-dots {
+      display: none !important;
+    }
+  }
+  
+  /* On masque le compteur numérique sur mobile */
+  @media (max-width: 768px) {
+    .lightbox-counter {
+      display: none !important;
+    }
+  }
+  
