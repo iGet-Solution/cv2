@@ -90,6 +90,11 @@ let currentImageIndex = 0;
 let currentGallery = [];
 let scrollPosition = 0;
 
+function isImageZoomed() {
+    const img = document.getElementById("lightbox-img");
+    return img.naturalWidth > img.clientWidth || img.naturalHeight > img.clientHeight;
+}
+
 function openGallery(images) {
     currentGallery = images;
     currentImageIndex = 0;
@@ -149,6 +154,9 @@ document.getElementById("lightbox").addEventListener("touchstart", (e) => {
 }, { passive: true });
 
 document.getElementById("lightbox").addEventListener("touchend", (e) => {
+    // Si l’image est zoomée, on n’autorise pas le swipe
+    if (isImageZoomed()) return;
+
     const endY = e.changedTouches[0].clientY;
     const diffY = startY - endY;
 
@@ -164,6 +172,7 @@ document.getElementById("lightbox").addEventListener("touchend", (e) => {
         }
     }
 }, { passive: true });
+
 </script>
 
     
