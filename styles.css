@@ -315,15 +315,7 @@ a:hover {
     text-align: center;
 }
 
-.profile-photo {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #00fff7;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
-}
+
 
 @keyframes slideFade {
     from {
