@@ -51,6 +51,7 @@ h3 {
 }
 
 
+
 /* Boutons */
 .cta {
     display: flex;
@@ -158,11 +159,7 @@ h3 {
         font-size: 1.5rem;
     }
 
-    .header-content {
-        flex-direction: column;
-        margin-bottom: 20px;
-    }
-
+    
     .back-to-top {
         bottom: 20px;
         right: 20px;
@@ -251,8 +248,8 @@ a:hover {
 
 
 .box:hover {
-    transform: scale(1.01);
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 255, 247, 0.4);
     transition: all 0.3s ease;
 }
 
