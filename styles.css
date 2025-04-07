@@ -669,4 +669,9 @@ a:hover {
       display: none !important;
     }
   }
-  
+
+.swipe-hint p {
+    margin: 4px 0;
+    font-size: 0.85rem;
+}
+
