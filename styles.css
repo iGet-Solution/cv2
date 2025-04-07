@@ -650,11 +650,14 @@ a:hover {
 
 @media (max-width: 768px) {
     .profile-photo {
-        width: 30vw;
-        height: 30vw;
+        width: 30vw !important;
+        height: 30vw !important;
         max-width: 160px;
         max-height: 160px;
+        display: block;
+        object-fit: cover;
     }
 }
+
 
 
