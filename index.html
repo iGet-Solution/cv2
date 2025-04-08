@@ -70,15 +70,8 @@
   </section>
   
   <!-- Lightbox galerie -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
-    <img id="lightbox-img" src="" alt="Aperçu agrandi">
-    <div class="lightbox-nav">
-      <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-      <span class="next" onclick="changeImage(1)">&#10095;</span>
-    </div>
-    <div class="lightbox-counter" id="lightbox-counter"></div>
-  </div>
+ <div class="lightbox" id="lightbox"></div>
+
   
 <script>
 let currentImageIndex = 0;
