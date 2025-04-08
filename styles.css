@@ -560,30 +560,26 @@ a:hover {
 
 @media (max-width: 768px) {
   .lightbox {
+    display: flex;
     flex-direction: column;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    background-color: #000;
   }
 
- .lightbox img {
+  .lightbox img {
     width: 100vw;
-    max-height: 100vh;
+    height: 100vh;
     object-fit: contain;
     scroll-snap-align: start;
-    border-radius: 0;
-    box-shadow: none;
-    padding-bottom: env(safe-area-inset-bottom);
-    margin-bottom: 20px; 
+    flex-shrink: 0;
+    transition: transform 0.4s ease;
   }
-}
 
-    @media (max-width: 768px) {
-  .lightbox {
-    padding-bottom: 60px;
+  .lightbox img:active {
+    transform: scale(0.98);
   }
-}
-
 
   .lightbox-nav,
   .lightbox-counter {
@@ -594,6 +590,8 @@ a:hover {
     position: fixed;
     top: 20px;
     right: 20px;
+    font-size: 2rem;
     z-index: 10000;
   }
 }
+
