@@ -28,15 +28,13 @@ h3 {
 }
 
 .profile-photo {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #00fff7;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
 }
-
 
 /* Header */
 .header-content {
@@ -45,12 +43,8 @@ h3 {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 60px;
-    animation: slideFade 1.5s ease-out;
+    margin-bottom: 40px;
 }
-
-
 
 /* Boutons */
 .cta {
@@ -134,7 +128,10 @@ h3 {
 }
 
 
-
+.box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 255, 247, 0.4); /* plus de glow au survol */
+}
 
 
 
@@ -159,7 +156,11 @@ h3 {
         font-size: 1.5rem;
     }
 
-    
+    .header-content {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
     .back-to-top {
         bottom: 20px;
         right: 20px;
@@ -248,18 +249,41 @@ a:hover {
 
 
 .box:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 255, 247, 0.4);
+    transform: scale(1.01);
+    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
     transition: all 0.3s ease;
+}
+
+
+.header-content h1 {
+    text-shadow: 0px 0px 10px rgba(0, 255, 247, 0.3);
+}
+
+
+.header-content {
+    animation: slideFade 1.5s ease-out;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
 
 
-
-
-
-
+.header-content {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    animation: slideFade 1.5s ease-out;
+}
 
 .header-content h1 {
     font-size: 2.5rem;
@@ -291,7 +315,15 @@ a:hover {
     text-align: center;
 }
 
-
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00fff7;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+}
 
 @keyframes slideFade {
     from {
@@ -349,11 +381,7 @@ a:hover {
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-    position: relative;
-    cursor: zoom-in;
-    transition: transform 0.3s ease, filter 0.3s ease;
 }
-
 
 .project-content {
     flex: 1;
@@ -421,7 +449,6 @@ a:hover {
 
 /* Lightbox pour agrandir les images */
 .lightbox {
-    display: none; /* <-- s'assurer qu'elle est cachée par défaut */
     position: fixed;
     top: 0;
     left: 0;
@@ -435,7 +462,13 @@ a:hover {
     flex-direction: column;
   }
   
-  
+  .lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00fff7;
+    transition: opacity 0.3s ease;
+  }
   
   /* Croix de fermeture */
   .close-lightbox {
@@ -507,7 +540,11 @@ a:hover {
   }
   
 
-
+  .project-image {
+    position: relative;
+    cursor: zoom-in;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
 
 .project-image:hover {
     transform: scale(1.02);
@@ -519,177 +556,3 @@ a:hover {
     overflow: hidden;
     height: 100vh;
 }
-
-
-
-@media (max-width: 768px) {
-    .lightbox {
-      background-color: #000; /* noir total façon Insta */
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-    }
-  
-    .lightbox img {
-        max-width: 100vw;
-        max-height: 100vh;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        border-radius: 0;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-        touch-action: pan-x pan-y;
-        cursor: grab;
-    }
-    
-  
-    .lightbox-nav,
-    .lightbox-counter {
-      display: none;
-    }
-  
-    .close-lightbox {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.8rem;
-      color: #fff;
-      z-index: 10000;
-      background: rgba(0,0,0,0.4);
-      padding: 4px 10px;
-      border-radius: 5px;
-    }
-  }
-  
-
-
-  .lightbox-dots {
-    position: absolute;
-    bottom: 25px;
-    display: flex;
-    gap: 6px;
-    z-index: 9999;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.lightbox-dots span {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s;
-}
-.lightbox-dots span.active {
-    background-color: #fff;
-}
-
-.swipe-hint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.65);
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 0.85rem;
-    border-radius: 8px;
-    z-index: 10000;
-    text-align: center;
-    animation: fadeOutHint 5s forwards;
-    white-space: nowrap;
-}
-
-@keyframes fadeOutHint {
-    0% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-
-
-
-
-@media (min-width: 769px) {
-    .swipe-hint {
-      display: none !important;
-    }
-  }
-  
-
-
-
-/* On masque les Dots sur PC */
-@media (min-width: 769px) {
-    .lightbox-dots {
-      display: none !important;
-    }
-  }
-  
-  /* On masque le compteur numérique sur mobile */
-  @media (max-width: 768px) {
-    .lightbox-counter {
-      display: none !important;
-    }
-  }
-  
-
-  .swipe-hint p {
-    margin: 4px 0;
-    font-size: 0.85rem;
-}
-
-@media (max-width: 768px) {
-    .project-image {
-        width: 100% !important;
-        height: auto;
-        object-fit: contain;
-    }
-}
-
-@media (max-width: 768px) {
-    .profile-photo {
-        width: 30vw !important;
-        height: 30vw !important;
-        max-width: 160px;
-        max-height: 160px;
-        display: block;
-        object-fit: cover;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .project-image {
-        max-width: 90vw;
-        max-height: 70vh;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .lightbox img {
-        max-width: 90vw;
-        max-height: 80vh;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .lightbox {
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.9);
-    }
-}
-
-
-
