@@ -421,6 +421,7 @@ a:hover {
 
 /* Lightbox pour agrandir les images */
 .lightbox {
+    display: none; /* <-- s'assurer qu'elle est cachée par défaut */
     position: fixed;
     top: 0;
     left: 0;
