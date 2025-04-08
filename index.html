@@ -92,14 +92,11 @@ function openGallery(images) {
   const isMobile = window.innerWidth <= 768;
   const lightbox = document.getElementById("lightbox");
 
-  lightbox.style.display = "flex";
-  document.body.classList.add("noscroll");
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
+  // 💥 On réinitialise le contenu pour éviter les résidus d’images
+  lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
 
   if (isMobile) {
-    // Version verticale mobile (type Instagram)
-    lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
+    // ✅ Version MOBILE — carousel vertical type Instagram
     images.forEach((imgSrc, index) => {
       const img = document.createElement("img");
       img.src = imgSrc;
@@ -107,12 +104,22 @@ function openGallery(images) {
       lightbox.appendChild(img);
     });
   } else {
-    // Version desktop avec navigation
-    document.getElementById("lightbox-img").style.display = "block";
-    document.querySelector(".lightbox-nav").style.display = "flex";
-    document.getElementById("lightbox-counter").style.display = "block";
+    // ✅ Version DESKTOP — lightbox avec navigation + compteur
+    lightbox.innerHTML += `
+      <img id="lightbox-img" src="" alt="Aperçu agrandi">
+      <div class="lightbox-nav">
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+      </div>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
+    `;
     showImage();
   }
+
+  lightbox.style.display = "flex";
+  document.body.classList.add("noscroll");
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 }
 
 function showImage() {
@@ -157,6 +164,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 </script>
+
 
 
 <script>
