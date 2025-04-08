@@ -559,7 +559,7 @@ a:hover {
 
 
 @media (max-width: 768px) {
-  .lightbox {
+  .lightbox.active {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -568,7 +568,7 @@ a:hover {
     background-color: #000;
   }
 
-  .lightbox img {
+  .lightbox.active img {
     width: 100vw;
     height: 100vh;
     object-fit: contain;
@@ -577,7 +577,7 @@ a:hover {
     transition: transform 0.4s ease;
   }
 
-  .lightbox img:active {
+  .lightbox.active img:active {
     transform: scale(0.98);
   }
 
@@ -594,4 +594,3 @@ a:hover {
     z-index: 10000;
   }
 }
-
