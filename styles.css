@@ -556,3 +556,34 @@ a:hover {
     overflow: hidden;
   
 }
+
+
+@media (max-width: 768px) {
+  .lightbox {
+    flex-direction: column;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .lightbox img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    scroll-snap-align: start;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .lightbox-nav,
+  .lightbox-counter {
+    display: none !important;
+  }
+
+  .close-lightbox {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+  }
+}
