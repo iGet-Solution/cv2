@@ -36,7 +36,7 @@
   
     <div class="project-card">
       <div class="project-image-wrapper">
-        <img src="Dispo utilisateur.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['Dispo utilisateur.png', 'YR.png', 'login.png'])">
+        <img src="Dispo utilisateur.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['Dispo utilisateur.png', 'YR.png', 'admin_interface3.png'])">
       </div>
       <div class="project-content">
         <h4>Gestions des disponibilités</h4>
@@ -70,8 +70,15 @@
   </section>
   
   <!-- Lightbox galerie -->
- <div class="lightbox" id="lightbox"></div>
-
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightbox-img" src="" alt="Aperçu agrandi">
+    <div class="lightbox-nav">
+      <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+      <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
   
 <script>
 let currentImageIndex = 0;
@@ -85,11 +92,14 @@ function openGallery(images) {
   const isMobile = window.innerWidth <= 768;
   const lightbox = document.getElementById("lightbox");
 
-  // 💥 On réinitialise le contenu pour éviter les résidus d’images
-  lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
+  lightbox.style.display = "flex";
+  document.body.classList.add("noscroll");
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 
   if (isMobile) {
-    // ✅ Version MOBILE — carousel vertical type Instagram
+    // Version verticale mobile (type Instagram)
+    lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
     images.forEach((imgSrc, index) => {
       const img = document.createElement("img");
       img.src = imgSrc;
@@ -97,22 +107,12 @@ function openGallery(images) {
       lightbox.appendChild(img);
     });
   } else {
-    // ✅ Version DESKTOP — lightbox avec navigation + compteur
-    lightbox.innerHTML += `
-      <img id="lightbox-img" src="" alt="Aperçu agrandi">
-      <div class="lightbox-nav">
-        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-        <span class="next" onclick="changeImage(1)">&#10095;</span>
-      </div>
-      <div class="lightbox-counter" id="lightbox-counter"></div>
-    `;
+    // Version desktop avec navigation
+    document.getElementById("lightbox-img").style.display = "block";
+    document.querySelector(".lightbox-nav").style.display = "flex";
+    document.getElementById("lightbox-counter").style.display = "block";
     showImage();
   }
-
-  lightbox.style.display = "flex";
-  document.body.classList.add("noscroll");
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
 }
 
 function showImage() {
@@ -157,7 +157,6 @@ document.addEventListener("keydown", function(e) {
   }
 });
 </script>
-
 
 
 <script>
