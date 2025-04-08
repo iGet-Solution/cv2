@@ -567,13 +567,15 @@ a:hover {
   }
 
  .lightbox img {
-  width: 100vw;
-  max-height: 100vh;
-  object-fit: contain;
-  scroll-snap-align: start;
-  border-radius: 0;
-  box-shadow: none;
-  padding-bottom: env(safe-area-inset-bottom); /* évite d’être cachée derrière la barre iOS */
+    width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    scroll-snap-align: start;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: env(safe-area-inset-bottom);
+    margin-bottom: 20px; 
+  }
 }
 
     @media (max-width: 768px) {
