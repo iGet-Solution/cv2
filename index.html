@@ -80,55 +80,84 @@
     <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
   
-  <script>
-  let currentImageIndex = 0;
-  let currentGallery = [];
-  let scrollPosition = 0;
-  
-  function openGallery(images) {
-    currentGallery = images;
-    currentImageIndex = 0;
+<script>
+let currentImageIndex = 0;
+let currentGallery = [];
+let scrollPosition = 0;
+
+function openGallery(images) {
+  currentGallery = images;
+  currentImageIndex = 0;
+  scrollPosition = window.scrollY || document.documentElement.scrollTop;
+  const isMobile = window.innerWidth <= 768;
+  const lightbox = document.getElementById("lightbox");
+
+  lightbox.style.display = "flex";
+  document.body.classList.add("noscroll");
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  if (isMobile) {
+    // Version verticale mobile (type Instagram)
+    lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
+    images.forEach((imgSrc, index) => {
+      const img = document.createElement("img");
+      img.src = imgSrc;
+      img.alt = `Image ${index + 1}`;
+      lightbox.appendChild(img);
+    });
+  } else {
+    // Version desktop avec navigation
+    document.getElementById("lightbox-img").style.display = "block";
+    document.querySelector(".lightbox-nav").style.display = "flex";
+    document.getElementById("lightbox-counter").style.display = "block";
     showImage();
-    scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    document.getElementById("lightbox").style.display = "flex";
-    document.body.classList.add("noscroll");
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
   }
-  
-  function showImage() {
-    const img = document.getElementById("lightbox-img");
-    img.style.opacity = 0;
+}
+
+function showImage() {
+  const img = document.getElementById("lightbox-img");
+  if (!img) return;
+  img.style.opacity = 0;
+  setTimeout(() => {
+    img.src = currentGallery[currentImageIndex];
+    img.onload = () => img.style.opacity = 1;
+    const counter = document.getElementById("lightbox-counter");
+    if (counter) {
+      counter.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+    }
+  }, 150);
+}
+
+function changeImage(direction) {
+  currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
+  showImage();
+}
+
+function closeLightbox(e) {
+  const isMobile = window.innerWidth <= 768;
+  if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
+    const lightbox = document.getElementById("lightbox");
+    lightbox.style.display = "none";
+    document.body.classList.remove("noscroll");
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    if (isMobile) {
+      lightbox.innerHTML = `<span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>`;
+    }
     setTimeout(() => {
-      img.src = currentGallery[currentImageIndex];
-      img.onload = () => img.style.opacity = 1;
-      document.getElementById("lightbox-counter").textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
-    }, 150);
+      window.scrollTo({ top: scrollPosition, behavior: 'auto' });
+    }, 0);
   }
-  
-  function changeImage(direction) {
-    currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
-    showImage();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeLightbox();
   }
-  
-  function closeLightbox(e) {
-    if (!e || e.target.classList.contains('lightbox') || e.target.classList.contains('close-lightbox')) {
-      document.getElementById("lightbox").style.display = "none";
-      document.body.classList.remove("noscroll");
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        window.scrollTo({ top: scrollPosition, behavior: 'auto' });
-      }, 0);
-    }
-  }
-  
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-      closeLightbox();
-    }
-  });
-  </script>
+});
+</script>
+
 
 <script>
     // Gestion du swipe sur mobile
