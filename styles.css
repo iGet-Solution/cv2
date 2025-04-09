@@ -594,3 +594,17 @@ a:hover {
     z-index: 10000;
   }
 }
+
+
+@media (max-width: 768px) {
+  .lightbox img {
+    width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    scroll-snap-align: start;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: env(safe-area-inset-bottom);
+    margin-bottom: 20px; /* 👈 Ajoute cette ligne pour l’espacement */
+  }
+}
