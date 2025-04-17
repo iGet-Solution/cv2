@@ -559,45 +559,46 @@ a:hover {
 
 
 @media (max-width: 768px) {
-  .lightbox.active {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    background-color: #000;
-   
-
+    .lightbox.active {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background-color: #000;
+    }
+  
+    .lightbox.active img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      transition: transform 0.4s ease;
+  
+      margin-top: 10px;
+      margin-bottom: 20px; /* ✅ AJOUT ICI */
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  
+    .lightbox.active img:active {
+      transform: scale(0.98);
+    }
+  
+    .lightbox-nav,
+    .lightbox-counter {
+      display: none !important;
+    }
+  
+    .close-lightbox {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      z-index: 10000;
+    }
   }
-
-  .lightbox.active img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: contain;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    transition: transform 0.4s ease;
-    margin-top: 10px;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  .lightbox.active img:active {
-    transform: scale(0.98);
-  }
-
-  .lightbox-nav,
-  .lightbox-counter {
-    display: none !important;
-  }
-
-  .close-lightbox {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    z-index: 10000;
-  }
-}
+  
 
 
 
