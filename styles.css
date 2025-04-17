@@ -569,18 +569,19 @@ a:hover {
     }
   
     .lightbox.active img {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-      transition: transform 0.4s ease;
-  
-      margin-top: 10px;
-      margin-bottom: 20px; /* ✅ AJOUT ICI */
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-  
+        width: 100vw;
+        height: auto; /* 👈 remplace 100vh */
+        max-height: 90vh; /* 👈 limite pour ne pas dépasser l'écran */
+        object-fit: contain;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        transition: transform 0.4s ease;
+      
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      
     .lightbox.active img:active {
       transform: scale(0.98);
     }
@@ -599,6 +600,5 @@ a:hover {
     }
   }
   
-
 
 
