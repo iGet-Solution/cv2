@@ -566,6 +566,8 @@ a:hover {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     background-color: #000;
+   
+
   }
 
   .lightbox.active img {
@@ -575,6 +577,8 @@ a:hover {
     scroll-snap-align: start;
     flex-shrink: 0;
     transition: transform 0.4s ease;
+    margin-top: 10px;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   .lightbox.active img:active {
@@ -596,15 +600,4 @@ a:hover {
 }
 
 
-@media (max-width: 768px) {
-  .lightbox img {
-    width: 100vw;
-    max-height: 100vh;
-    object-fit: contain;
-    scroll-snap-align: start;
-    border-radius: 0;
-    box-shadow: none;
-    padding-bottom: env(safe-area-inset-bottom);
-    margin-bottom: 20px; /* 👈 Ajoute cette ligne pour l’espacement */
-  }
-}
+
