@@ -351,7 +351,7 @@ a:hover {
   
 /* hauteur initiale suffisante pour le texte dans ma section a propos */
   .apropos {
-    min-height: 280px; 
+    min-height: 410px; 
     overflow: hidden;
     position: relative;
 }

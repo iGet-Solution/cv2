@@ -16,7 +16,7 @@
         <header class="header-content">
             <img src="photocv.jpg" alt="Photo de Gaëtan" class="profile-photo">
             <h1>Bonjour, moi c’est <span class="accent">Gaëtan Prezelin</span></h1>
-            <p class="subtitle">Responsable IT | Administrateur Systèmes & Réseaux | Développeur Python/HTML&CSS</p>
+            <p class="subtitle">Responsable IT | Administrateur Systèmes & Réseaux | Développeur Python, HTML & CSS </p>
             <p class="intro-text">
                 Autodidacte passionné d’informatique depuis 10+ ans, je conçois des solutions robustes, humaines et efficaces.<br>
                 
@@ -34,37 +34,83 @@
     <h3>🚀 Projets récents</h3>
     <p class="subtitle">Un aperçu de quelques outils et sites que j'ai développés.</p>
   
+   
+  
     <div class="project-card">
       <div class="project-image-wrapper">
-        <img src="Dispo utilisateur.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['Dispo utilisateur.png', 'YR.png', 'login.png'])">
+        <img src="ticket1.png" alt="Aperçu Portfolio" class="project-image" onclick="openGallery(['ticket1.png', 'créneau.png', 'commentaire.png'])">
       </div>
       <div class="project-content">
-        <h4>Gestions des disponibilités</h4>
-        <p>Application interne pour gérer les disponibilités du personnel et affectations.</p>
+        <h4>🛠️ Système de ticket de maintenance – ADGV Groupe</h4>
+        <p>Développement d’une application interne de ticketing pour la gestion des interventions de maintenance du groupe ADGV.</p>
+        <div class="tech">
+          <i class="devicon-html5-plain colored"></i>
+          <i class="devicon-css3-plain colored"></i>
+          <i class="devicon-javascript-plain colored"></i>
+          <i class="devicon-python-plain colored"></i>
+          <i class="devicon-flask-original"></i>   
+          <i class="devicon-sqldeveloper-plain"></i>
+          
+                 
+        </div>
+        <a href="https://github.com/iGet-Solution/Systeme-Ticket-de-Maintenance-" class="btn" target="_blank">Voir le site</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-image-wrapper">
+        <img src="Dispo utilisateur.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['login.png', 'Dispo utilisateur.png', 'YR.png'])">
+      </div>
+      <div class="project-content">
+        <h4>📅 Gestion des disponibilités – ADGV Groupe</h4>
+        <p>Application interne de planification des ressources humaines à destination des ateliers de production du Groupe ADGV. </p>
         <div class="tech">
           <i class="devicon-python-plain colored"></i>
           <i class="devicon-flask-original"></i>
           <i class="devicon-html5-plain colored"></i>
           <i class="devicon-css3-plain colored"></i>
           <i class="devicon-javascript-plain colored"></i>
+          <i class="devicon-sqlite-plain"></i>
+
+
+          
         </div>
-        <a href="https://github.com/iGet-Solution" class="btn" target="_blank">Voir le code</a>
+        <a href="https://github.com/iGet-Solution/Gestion-des-disponibilit-s-d-utilisateurs-du-Groupe-ADGV" class="btn" target="_blank">Voir le code</a>
       </div>
     </div>
-  
+
     <div class="project-card">
       <div class="project-image-wrapper">
-        <img src="sitetest.png" alt="Aperçu Portfolio" class="project-image" onclick="openGallery(['sitetest.png', 'sitetest2.png', 'sitetest3.png'])">
+        <img src="site1.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['sitetest.png', 'site2.png', 'refadgv.png'])">
       </div>
       <div class="project-content">
-        <h4>Portfolio personnel</h4>
-        <p>Site responsive développé en HTML/CSS/JS avec animations et thème sombre. Version papier et web du CV.</p>
+        <h4>🌐 Site web institutionnel – ADGV Groupe</h4>
+        <p>Conception, développement et mise en ligne du site officiel du Groupe ADGV, spécialisé dans la tôlerie, l’usinage et l’intégration industrielle.</p>
+        <div class="tech">
+          <i class="devicon-wordpress-plain"></i>
+
+          
+        </div>
+        <a href="https://adgvgroupe.fr/" class="btn" target="_blank">Voir le code</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-image-wrapper">
+        <img src="igetsolindex.png" alt="Aperçu Application Flask" class="project-image" onclick="openGallery(['igetsol.png', 'igetsolindex.png', 'finnn.png'])">
+      </div>
+      <div class="project-content">
+        <h4>🌐 Site web iGet-Solution</h4>
+        <p>Conception, développement et mise en ligne de mon site internet.</p>
         <div class="tech">
           <i class="devicon-html5-plain colored"></i>
           <i class="devicon-css3-plain colored"></i>
           <i class="devicon-javascript-plain colored"></i>
+          
+
+          
         </div>
-        <a href="https://iget-solution.github.io/CV/" class="btn" target="_blank">Voir le site</a>
+        <a href="https://iget-solution.github.io/iGetSolution/index.html#" class="btn" target="_blank">Voir le code</a>
       </div>
     </div>
   </section>
@@ -183,30 +229,34 @@ document.addEventListener("keydown", function(e) {
     
   
 
-            <section class="experience box fade-in">
-                <h3>Expérience Professionnelle</h3>
-                <div>
-                    <h4>Informaticien : ADGVTOLERIE Durtal (49430)</h4>
-                    <p>De Mars 2023 à ...</p>
-                    <ul>
-                        <li>Maintenance et administration des serveurs, gestion des sauvegardes et de la sécurité</li>
-                        <li>Programmation de machines intégrées (Photomaton)</li>
-                        <li>Installation et configuration de postes de travail</li>
-                        <li>Création du site internet de l'enteprise et maintenance de ce dernier</li>
-                        <li>Création d'un systéme de ticket de maintenance en python</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Conseiller du numérique : Pôle Emploi La Flèche (72200)</h4>
-                    <p>D'Avril 2022 à Décembre 2022</p>
-                    <ul>
-                        <li>Accueillir les personnes et les renseigner</li>
-                        <li>Animer et adapter des ateliers sur le numérique</li>
-                        <li>Accompagner et conseiller des personnes en difficulté</li>
-                    </ul>
-                </div>
-            </section>
-
+    <section class="experience box fade-in">
+      <h3>Expérience Professionnelle</h3>
+  
+      <div>
+          <h4>Informaticien Polyvalent : ADGVTOLERIE – Durtal (49430)</h4>
+          <p>Depuis mars 2023</p>
+          <ul>
+              <li>Gestion complète de l'infrastructure IT : serveurs physiques/virtuels (Windows Server), Active Directory, GPO, DNS</li>
+              <li>Supervision des machines virtuelles sous Hyper-V : création, maintenance, restauration, optimisation</li>
+              <li>Planification et mise en œuvre des stratégies de sauvegarde (NAS, Active Backup), sécurité réseau, antivirus et filtrage</li>
+              <li>Développement d’outils internes (Python, Flask, HTML/CSS/JS) : ticketing, gestion RH (disponibilités et congés)</li>
+              <li>Conception et maintenance du site institutionnel de l’entreprise ; gestion de contenu WordPress ; SEO basique</li>
+              <li>Support technique (niveaux 1 à 3) et communication interne : documentation, accompagnement utilisateurs, LinkedIn</li>
+          </ul>
+      </div>
+  
+      <div>
+          <h4>Conseiller du numérique : France Travail (Pôle Emploi) – La Flèche (72200)</h4>
+          <p>D’avril 2022 à décembre 2022</p>
+          <ul>
+              <li>Accueil et accompagnement des publics variés dans leurs démarches numériques</li>
+              <li>Animation d’ateliers sur l’usage des outils informatiques (cv, mail, démarches en ligne, cybersécurité, bureautique…)</li>
+              <li>Conseil personnalisé, vulgarisation et transmission pédagogique adaptée</li>
+              <li>Contribution à l’inclusion numérique avec une approche humaine, bienveillante et orientée solution</li>
+          </ul>
+      </div>
+  </section>
+  
             <section class="skills box fade-in">
                 <h3>Compétences informatique</h3>
                 <div class="skill">
@@ -277,20 +327,18 @@ document.addEventListener("keydown", function(e) {
             <section class="experience box fade-in">
                 <h3>Compétences globales</h3>
                 <div>
-                    <li>Installation, configuration et gestion de serveurs physiques et virtuels</li>
-                    <li>Gestion des systèmes d'exploitation serveur tels que Windows Server</li>
-                    <li>Planification et mise en œuvre de stratégies de sauvegarde et de récupération de données</li>
-                    <li>Gestion des utilisateurs, des groupes et des droits d'accès aux ressources du serveur</li>
-                    <li>Identifier un matériel défaillant, diagnostiquer une panne</li>
-                    <li>Démonter et remonter un poste informatique</li>
-                    <li>Paramétrer physiquement un poste informatique (système d’exploitation Windows, Mac, Linux... et logiciels)</li>
-                    <li>Sécurisation des postes informatiques et des données de l’entreprise</li>
-                    <li>Préparation et installation des matériels et/ou logiciels des systèmes et réseaux informatiques</li>
-                    <li>Base du HTML/CSS ainsi que le C# et C++</li>
-                    <li>WordPress</li>
-                    <li>Organiser et animer des ateliers thématiques</li>
-                    <li>Analyser et répondre aux besoins des usagers</li>
-                    <li>À l'écoute de la demande</li>
+                  <li>Installation, configuration et gestion de serveurs physiques et virtuels (Windows Server, Hyper-V)</li>
+                  <li>Administration des systèmes d'exploitation serveurs (Windows Server, gestion des rôles et fonctionnalités)</li>
+                  <li>Planification et mise en œuvre de stratégies de sauvegarde et de récupération de données (NAS, Active Backup)</li>
+                  <li>Gestion des utilisateurs, groupes et droits d’accès via Active Directory</li>
+                  <li>Gestion des comptes Microsoft 365 (Outlook, SharePoint, Teams, OneDrive)</li>
+                  <li>Diagnostic matériel, identification et résolution de pannes informatiques</li>
+                  <li>Assemblage, démontage et paramétrage de postes de travail (Windows, Mac, Linux)</li>
+                  <li>Installation, sécurisation et maintenance des postes et des réseaux informatiques d’entreprise</li>
+                  <li>Développement Web : bases solides en HTML5, CSS3, WordPress</li>
+                  <li>Organisation et animation d'ateliers numériques thématiques</li>
+                  <li>Analyse des besoins des utilisateurs et accompagnement personnalisé</li>
+                  <li>Approche à l’écoute, bienveillante et orientée solution</li>
                 </div>
             </section>
             
@@ -327,12 +375,14 @@ document.addEventListener("keydown", function(e) {
 
 
     
+    <div id="typing-text"></div>
 
     <script>
-        const text = "Je suis actuellement Responsable Informatique dans une PME industrielle de 50+ personnes. Je gère l’ensemble de l’infrastructure IT : serveurs (Windows Server, Hyper-V), Active Directory, gestion des VM, sécurité réseau, sauvegardes, etc. J’ai également conçu plusieurs outils internes (ticketing, gestion RH, visualisation du personnel) en Python, HTML/CSS et JavaScript. Mon approche est à la fois technique et humaine : j’assure aussi le support utilisateurs, la documentation interne, ainsi que la communication sur LinkedIn ou à travers des supports adaptés. J’aime proposer des solutions concrètes, optimiser les systèmes, et accompagner les collaborateurs dans leur quotidien numérique";
+        const text = "Responsable Informatique polyvalent et développeur interne, j’accompagne la croissance d’une PME industrielle de 50+ collaborateurs en pilotant l’ensemble des infrastructures numériques et des projets digitaux. Je gère les serveurs (Windows Server, Hyper-V), l'Active Directory, la sécurité réseau, les sauvegardes (NAS Synology, Active Backup) et la supervision des VM. Je pilote également le déploiement et la maintenance des postes utilisateurs, la sécurisation des accès, et l'optimisation continue du SI. Passionné par l'amélioration continue, j’ai conçu et déployé plusieurs applications sur mesure (gestion de tickets, gestion RH, visualisation du personnel, gestion des congés) en Python, HTML/CSS, JavaScript. Je gère également la maintenance, l'évolution et le référencement du site internet de l'entreprise, et je contribue à la communication externe (LinkedIn, supports de recrutement). Proche des utilisateurs, je combine support technique, vulgarisation des outils numériques, sensibilisation à la cybersécurité, et documentation interne. Mon approche est de proposer des solutions concrètes, optimiser les systèmes existants, fluidifier les échanges numériques, et accompagner les équipes au quotidien dans un environnement en constante évolution.";
+        
         let index = 0;
         const speed = 20; 
-
+    
         function typeWriter() {
             if (index < text.length) {
                 document.getElementById("typing-text").innerHTML += text.charAt(index);
@@ -340,11 +390,12 @@ document.addEventListener("keydown", function(e) {
                 setTimeout(typeWriter, speed);
             }
         }
-
+    
         window.onload = function() {
             typeWriter();
         };
     </script>
+    
 
     <script>
     window.onscroll = function() {
@@ -356,6 +407,8 @@ document.addEventListener("keydown", function(e) {
         }
     };
     </script>
+
+    
 
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
